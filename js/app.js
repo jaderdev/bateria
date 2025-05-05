@@ -233,7 +233,7 @@ function registrarTeste() {
   showNotification('Registro salvo com sucesso!', 'success');
   
   // Mudar para a aba de registros
-  switchTab('secaoRegistros');
+  //switchTab('secaoRegistros');
 }
 
 // Limpar formulário
