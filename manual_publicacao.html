@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Publicação - Sistema de Testes de Baterias ER18505M</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #00B1FF;
+      border-bottom: 2px solid #B5E52E;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #224266;
+      margin-top: 30px;
+    }
+    h3 {
+      color: #112133;
+    }
+    code {
+      background-color: #f5f5f5;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .note {
+      background-color: #e6fbff;
+      border-left: 4px solid #00B1FF;
+      padding: 10px 15px;
+      margin: 20px 0;
+    }
+    .warning {
+      background-color: #fff8e6;
+      border-left: 4px solid #ffcc00;
+      padding: 10px 15px;
+      margin: 20px 0;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px 0;
+    }
+    a {
+      color: #00B1FF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Manual de Publicação - Sistema de Testes de Baterias ER18505M</h1>
+  
+  <p>Este manual contém instruções detalhadas para publicar o Sistema de Testes de Baterias ER18505M no domínio DPSbateria.laager.com.br.</p>
+  
+  <h2 id="indice">Índice</h2>
+  <ol>
+    <li><a href="#requisitos">Requisitos</a></li>
+    <li><a href="#conteudo">Conteúdo do Pacote</a></li>
+    <li><a href="#dominio">Configuração do Domínio</a></li>
+    <li><a href="#upload">Upload dos Arquivos</a></li>
+    <li><a href="#verificacao">Verificação da Instalação</a></li>
+    <li><a href="#problemas">Solução de Problemas</a></li>
+    <li><a href="#manutencao">Manutenção</a></li>
+  </ol>
+  
+  <h2 id="requisitos">1. Requisitos</h2>
+  
+  <p>Para publicar o sistema, você precisará de:</p>
+  
+  <ul>
+    <li>Acesso ao painel de controle do seu provedor de hospedagem</li>
+    <li>Acesso FTP ou gerenciador de arquivos do seu provedor</li>
+    <li>Domínio DPSbateria.laager.com.br configurado e apontando para sua hospedagem</li>
+    <li>Navegador web atualizado (Chrome, Firefox, Edge ou Safari)</li>
+  </ul>
+  
+  <h2 id="conteudo">2. Conteúdo do Pacote</h2>
+  
+  <p>O pacote de instalação contém os seguintes arquivos e pastas:</p>
+  
+  <pre>
+dpsbateria-server-deploy/
+├── css/
+│   ├── styles.css         # Estilos personalizados
+│   └── tailwind.min.css   # Framework CSS
+├── img/
+│   ├── favicon.ico        # Ícone do site
+│   └── logo_laager.jpg    # Logo da Laager
+├── js/
+│   ├── app.js             # Código JavaScript principal
+│   └── xlsx.full.min.js   # Biblioteca para exportação Excel
+└── index.html             # Página principal do sistema
+  </pre>
+  
+  <h2 id="dominio">3. Configuração do Domínio</h2>
+  
+  <h3>Opção 1: Subdomínio em Hospedagem Existente</h3>
+  
+  <p>Se você já possui o domínio laager.com.br hospedado:</p>
+  
+  <ol>
+    <li>Acesse o painel de controle do seu provedor de hospedagem</li>
+    <li>Navegue até a seção de "Domínios" ou "DNS"</li>
+    <li>Adicione um subdomínio com o nome "DPSbateria"</li>
+    <li>Aponte o subdomínio para a pasta onde você fará o upload dos arquivos</li>
+  </ol>
+  
+  <div class="note">
+    <strong>Nota:</strong> A interface exata pode variar dependendo do seu provedor de hospedagem. Consulte a documentação específica do seu provedor se necessário.
+  </div>
+  
+  <h3>Opção 2: Configuração de DNS Externo</h3>
+  
+  <p>Se o domínio laager.com.br está registrado em um provedor diferente da hospedagem:</p>
+  
+  <ol>
+    <li>Acesse o painel de controle do registrador do domínio</li>
+    <li>Navegue até a seção de "Gerenciamento de DNS"</li>
+    <li>Adicione um registro CNAME:
+      <ul>
+        <li>Nome: DPSbateria</li>
+        <li>Valor: seu-servidor-de-hospedagem.com (fornecido pelo seu provedor)</li>
+      </ul>
+    </li>
+    <li>Aguarde a propagação do DNS (pode levar até 48 horas)</li>
+  </ol>
+  
+  <div class="warning">
+    <strong>Importante:</strong> Alterações de DNS podem levar até 48 horas para propagar completamente pela internet. Planeje com antecedência.
+  </div>
+  
+  <h2 id="upload">4. Upload dos Arquivos</h2>
+  
+  <h3>Método 1: Usando FTP</h3>
+  
+  <ol>
+    <li>Conecte-se ao seu servidor usando um cliente FTP (como FileZilla)
+      <ul>
+        <li>Servidor: fornecido pelo seu provedor</li>
+        <li>Usuário: seu nome de usuário FTP</li>
+        <li>Senha: sua senha FTP</li>
+        <li>Porta: geralmente 21 (ou fornecida pelo provedor)</li>
+      </ul>
+    </li>
+    <li>Navegue até a pasta raiz do subdomínio DPSbateria
+      <ul>
+        <li>Geralmente algo como <code>/public_html/DPSbateria/</code> ou <code>/www/DPSbateria/</code></li>
+      </ul>
+    </li>
+    <li>Faça upload de todos os arquivos e pastas do pacote <code>dpsbateria-server-deploy</code>
+      <ul>
+        <li>Certifique-se de manter a estrutura de pastas intacta</li>
+        <li>O arquivo <code>index.html</code> deve estar na raiz do diretório</li>
+      </ul>
+    </li>
+  </ol>
+  
+  <h3>Método 2: Usando o Gerenciador de Arquivos do Painel de Controle</h3>
+  
+  <ol>
+    <li>Acesse o painel de controle do seu provedor de hospedagem (cPanel, Plesk, etc.)</li>
+    <li>Abra o "Gerenciador de Arquivos"</li>
+    <li>Navegue até a pasta raiz do subdomínio DPSbateria</li>
+    <li>Faça upload do pacote ZIP (se disponível) e extraia-o, ou</li>
+    <li>Crie as pastas necessárias (css, img, js) e faça upload dos arquivos individualmente</li>
+  </ol>
+  
+  <h2 id="verificacao">5. Verificação da Instalação</h2>
+  
+  <p>Após concluir o upload, verifique se a instalação foi bem-sucedida:</p>
+  
+  <ol>
+    <li>Abra um navegador web</li>
+    <li>Acesse o endereço: <code>https://DPSbateria.laager.com.br</code></li>
+    <li>Você deve ver a página inicial do Sistema de Testes de Baterias</li>
+    <li>Teste as seguintes funcionalidades:
+      <ul>
+        <li>Alternância entre tema claro e escuro</li>
+        <li>Navegação entre as abas "Formulário" e "Registros"</li>
+        <li>Inserção de um código de barras para ativar o formulário</li>
+        <li>Preenchimento e envio de um teste</li>
+        <li>Visualização do registro na aba "Registros"</li>
+        <li>Exportação para CSV e Excel</li>
+      </ul>
+    </li>
+  </ol>
+  
+  <h2 id="problemas">6. Solução de Problemas</h2>
+  
+  <h3>Página não encontrada (404)</h3>
+  
+  <ul>
+    <li>Verifique se o arquivo <code>index.html</code> está na pasta correta</li>
+    <li>Confirme se o subdomínio está configurado corretamente</li>
+    <li>Verifique se o DNS propagou completamente (pode levar até 48 horas)</li>
+  </ul>
+  
+  <h3>Problemas de Layout ou Estilo</h3>
+  
+  <ul>
+    <li>Verifique se a pasta <code>css</code> foi carregada corretamente</li>
+    <li>Confirme se os arquivos CSS estão na estrutura correta</li>
+    <li>Limpe o cache do navegador e recarregue a página</li>
+  </ul>
+  
+  <h3>Funcionalidades JavaScript não Funcionam</h3>
+  
+  <ul>
+    <li>Verifique se a pasta <code>js</code> foi carregada corretamente</li>
+    <li>Confirme se os arquivos JavaScript estão na estrutura correta</li>
+    <li>Verifique o console do navegador (F12) para identificar erros</li>
+  </ul>
+  
+  <h3>Imagens não Aparecem</h3>
+  
+  <ul>
+    <li>Verifique se a pasta <code>img</code> foi carregada corretamente</li>
+    <li>Confirme se os arquivos de imagem estão na estrutura correta</li>
+  </ul>
+  
+  <h2 id="manutencao">7. Manutenção</h2>
+  
+  <h3>Backup dos Dados</h3>
+  
+  <p>O sistema armazena todos os dados no localStorage do navegador do usuário. Para preservar os dados:</p>
+  
+  <ol>
+    <li>Exporte regularmente os registros para Excel ou CSV</li>
+    <li>Armazene os arquivos exportados em local seguro</li>
+  </ol>
+  
+  <h3>Atualização do Sistema</h3>
+  
+  <p>Para atualizar o sistema no futuro:</p>
+  
+  <ol>
+    <li>Faça backup dos dados conforme descrito acima</li>
+    <li>Substitua os arquivos no servidor pelos novos arquivos</li>
+    <li>Mantenha a mesma estrutura de pastas</li>
+    <li>Teste o sistema após a atualização</li>
+  </ol>
+  
+  <h3>Personalização</h3>
+  
+  <p>Se desejar personalizar o sistema:</p>
+  
+  <ul>
+    <li><code>css/styles.css</code>: Modifique para alterar a aparência</li>
+    <li><code>js/app.js</code>: Modifique para alterar o comportamento</li>
+    <li><code>index.html</code>: Modifique para alterar a estrutura</li>
+  </ul>
+  
+  <h2>Suporte</h2>
+  
+  <p>Para suporte adicional, entre em contato com a equipe de TI da Laager ou com o desenvolvedor do sistema.</p>
+  
+  <div class="footer">
+    <p>© 2025 Laager Tecnologia - Todos os direitos reservados</p>
+  </div>
+</body>
+</html>

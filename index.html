@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laager | Teste de Baterias ER18505M</title>
+  <!-- <link rel="stylesheet" href="css/tailwind.min.css"> -->
+  <script src="css/tailwind.min.css"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <meta name="description" content="Sistema de testes de baterias ER18505M da Laager - Controle de qualidade e inspeção">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen font-inter text-gray-800 dark:text-gray-100 transition-colors duration-200">
+  <div class="app-container mx-auto px-4 py-6 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <header class="app-header bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 mb-6 transition-all">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex items-center">
+          <img src="img/logo_laager.jpg" alt="Laager Logo" class="h-10 sm:h-12 md:h-14 mr-4">
+          <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-laager-blue-dark dark:text-laager-blue-light">
+            Teste de Baterias <span class="text-laager-green-dark">ER18505M</span>
+          </h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs sm:text-sm bg-laager-green-light text-laager-navy-default px-3 py-1 rounded-full font-medium">DPS Laager</span>
+          <button id="themeToggle" class="theme-toggle-btn" aria-label="Alternar tema claro/escuro">
+            <svg id="sunIcon" class="w-5 h-5 text-yellow-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+            </svg>
+            <svg id="moonIcon" class="w-5 h-5 text-gray-700 dark:hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="app-main bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 transition-all">
+      <!-- Navigation Tabs -->
+      <div class="tab-navigation mb-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex flex-wrap -mb-px">
+          <button id="tabFormulario" class="tab-btn active mr-2" data-tab="secaoFormulario">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Formulário
+          </button>
+          <button id="tabRegistros" class="tab-btn mr-2" data-tab="secaoRegistros">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            Registros
+          </button>
+        </div>
+      </div>
+      
+      <!-- Form Section -->
+      <div id="secaoFormulario" class="tab-content active">
+        <form id="form" class="space-y-6">
+          <div class="form-group">
+            <label for="codigoBarras" class="form-label">Escaneie o Código de Barras:</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                </svg>
+              </div>
+              <input 
+                autofocus 
+                type="text" 
+                id="codigoBarras" 
+                name="codigo" 
+                class="form-input pl-10" 
+                placeholder="Escaneie ou digite o código aqui..."
+              >
+            </div>
+          </div>
+          
+          <div id="testes" class="hidden">
+            <div class="section-divider">
+              <h2 class="section-title">Resultados dos Testes</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+              <!-- OCV Inicial -->
+              <div class="form-group">
+                <label class="form-label">
+                  OCV Inicial (V):
+                  <span class="form-hint">(3,63V - 3,73V)</span>
+                </label>
+                <input type="text" name="ocvInicial" class="form-input">
+              </div>
+              
+              <!-- Status OCV -->
+              <div class="form-group">
+                <label class="form-label">Status OCV:</label>
+                <select name="statusOcv" class="form-select status-select" disabled>
+                  <option>OK</option>
+                  <option>NOK</option>
+                </select>
+              </div>
+              
+              <!-- Corrente Carga -->
+              <div class="form-group">
+                <label class="form-label">
+                  Corrente Carga (mA):
+                  <span class="form-hint">(23mA - 25mA)</span>
+                </label>
+                <input type="text" name="correnteCarga" class="form-input">
+              </div>
+              
+              <!-- Status Carga -->
+              <div class="form-group">
+                <label class="form-label">Status Carga:</label>
+                <select name="statusCarga" class="form-select status-select" disabled>
+                  <option>OK</option>
+                  <option>NOK</option>
+                </select>
+              </div>
+              
+              <!-- OCV Pós-Carga -->
+              <div class="form-group">
+                <label class="form-label">
+                  OCV Pós-Carga (V):
+                  <span class="form-hint">(≥ 3,60V)</span>
+                </label>
+                <input type="text" name="ocvPosCarga" class="form-input">
+              </div>
+              
+              <!-- Status Pós-Carga -->
+              <div class="form-group">
+                <label class="form-label">Status Pós-Carga:</label>
+                <select name="statusPosCarga" class="form-select status-select" disabled>
+                  <option>OK</option>
+                  <option>NOK</option>
+                </select>
+              </div>
+              
+              <!-- Tensão Pulso -->
+              <div class="form-group">
+                <label class="form-label">
+                  Tensão Pulso (V):
+                  <span class="form-hint">(≥ 2,90V)</span>
+                </label>
+                <input type="text" name="tensaoPulso" class="form-input">
+              </div>
+              
+              <!-- Status Pulso -->
+              <div class="form-group">
+                <label class="form-label">Status Pulso:</label>
+                <select name="statusPulso" class="form-select status-select" disabled>
+                  <option>OK</option>
+                  <option>NOK</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="section-divider">
+              <h2 class="section-title">Informações Adicionais</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+              <!-- Inspeção Visual -->
+              <div class="form-group">
+                <label class="form-label">Inspeção Visual:</label>
+                <select name="inspecaoVisual" class="form-select">
+                  <option>OK</option>
+                  <option>NOK</option>
+                </select>
+              </div>
+              
+              <!-- Conclusão Final -->
+              <div class="form-group">
+                <label class="form-label">Conclusão Final:</label>
+                <select name="conclusao" class="form-select status-select" disabled>
+                  <option>Aprovada para Estoque</option>
+                  <option>Reprovada - Descartar</option>
+                </select>
+              </div>
+              
+              <!-- Data de Inspeção -->
+              <div class="form-group">
+                <label class="form-label">Data de Inspeção:</label>
+                <input type="date" name="dataInspecao" class="form-input">
+              </div>
+            </div>
+            
+            <!-- Observações -->
+            <div class="form-group mt-4">
+              <label class="form-label">Observações:</label>
+              <textarea name="observacoes" rows="3" class="form-textarea"></textarea>
+            </div>
+            
+            <!-- Form Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+              <button type="button" id="btnRegistrar" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Finalizar Registro
+              </button>
+              <button type="button" id="btnLimpar" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                Limpar Formulário
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Records Section -->
+      <div id="secaoRegistros" class="tab-content">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-gray-800 dark:text-white">Registros de Testes</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400" id="totalRegistros">Total: 0 registros</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <select id="filtroStatus" class="form-select min-w-[180px]">
+              <option value="todos">Todos os Registros</option>
+              <option value="aprovados">Aprovados</option>
+              <option value="reprovados">Reprovados</option>
+              <option value="inspecao">Inspeções Próximas</option>
+            </select>
+            <div class="flex flex-wrap gap-2">
+              <button id="btnExportarCSV" class="btn btn-secondary btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                CSV
+              </button>
+              <button id="btnExportarExcel" class="btn btn-success btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Excel
+              </button>
+              <button id="btnLimparDados" class="btn btn-danger btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                Limpar
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table class="table-auto w-full">
+            <thead>
+              <tr class="bg-gray-50 dark:bg-gray-700">
+                <th class="table-header">Código</th>
+                <th class="table-header">Data</th>
+                <th class="table-header">OCV Inicial</th>
+                <th class="table-header">Corrente</th>
+                <th class="table-header">OCV Pós</th>
+                <th class="table-header">Tensão Pulso</th>
+                <th class="table-header">Visual</th>
+                <th class="table-header">Conclusão</th>
+                <th class="table-header">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaRegistros">
+              <!-- Registros serão inseridos aqui dinamicamente -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="semRegistros" class="empty-state">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          <p class="text-gray-500 dark:text-gray-400">Nenhum registro encontrado.</p>
+          <p class="text-sm text-gray-400 dark:text-gray-500 mt-2">Registre um teste para começar.</p>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="app-footer mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      <p>Sistema de Teste de Baterias ER18505M Laager</p>
+      <p class="mt-1">© 2025 Laager Tecnologia - Todos os direitos reservados</p>
+    </footer>
+  </div>
+
+  <!-- Modal de Detalhes -->
+  <div id="modalDetalhes" class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Detalhes do Teste</h3>
+        <button id="fecharModal" class="modal-close">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="conteudoModal" class="modal-content">
+        <!-- Conteúdo do modal será preenchido dinamicamente -->
+      </div>
+      <div class="modal-footer">
+        <button id="fecharModalBtn" class="btn btn-secondary">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/xlsx.full.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
